@@ -11,7 +11,7 @@ let floatingPointNumber = 321.4
 let true4 = numberVariable === 123
 let true5 = floatingPointNumber !== 321.432
 let false3 = numberVariable < 100
-let sortaTrue = '1' === 1  // never use this ==
+let sortaTrue = '1' == 1  // never use this ==
 let notTrue   = '1' === 1 // always use this ===
 
 return(

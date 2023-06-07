@@ -1,21 +1,25 @@
 import Labs from "./labs";
 import HelloWorld from "./labs/a3/hello-world";
 import Tuiter from "./tuiter";
-import {BrowserRouter, Navigate,Link} from "react-router-dom";
+import {BrowserRouter, Navigate} from "react-router-dom";
 import {Routes, Route} from "react-router";
-import Asd from "./Asd"
-import Rew from "./Rew"
 
 function App() {
-    return(
-        <BrowserRouter>
-            <Link to="/qwe/21/14/wer">LINK A</Link>
-            <Routes>
-                <Route path="/qwe/:qwe/:wer/wer" element={<Rew/>}/>
-                <Route path="/asd/:zxc/:xcv" element={<Asd/>}/>
-            </Routes>
-        </BrowserRouter>
-    )
+  return (
+    
+   <BrowserRouter>
+   <div className="container">
+     <Routes>
+       <Route path="/"         element={<Navigate to="/labs/a3"/>}/>
+       <Route path="/labs/*"   element={<Labs/>}/>
+       <Route path="/hello"    element={<HelloWorld/>}/>
+       <Route path="/tuiter/*" element={<Tuiter/>}/>
+     </Routes>
+   </div>
+ </BrowserRouter>
+ 
+ 
+  );
 }
 export default App;
 

@@ -1,7 +1,7 @@
 import Nav from "../nav";
 import {Route, Routes} from "react-router-dom"
 import NavigationSidebar from "./navigation-sidebar";
-import HomeScreen from "./home-screen";
+import HomeScreen from "./Home-screen/home-screen";
 import ExploreScreen from "./explore-screen/index";
 
 import BookmarksScreen from "./bookmarks-screen";
@@ -10,15 +10,25 @@ import WhoToFollowListItem
   from "./who-to-follow-list/who-to-follow-list-item";
 import WhoToFollowList from "./who-to-follow-list";
 import TuitSummaryList from "./tuiter-summary-list";
+import whoReducer from "./reducers/who-reducer";
+import { configureStore } from '@reduxjs/toolkit';
+import tuitsReducer from "./reducers/tuits-reducer";
+import {Provider} from "react-redux";
+const store = configureStore(
+  {reducer: {who: whoReducer, tuits: tuitsReducer}});
+
+
 function Tuiter() {
  return (
+ 
+<Provider store={store}>
   <div>
   <Nav />
   <div className="row">
-    <div className="col-2">
+    <div className="col-sm-2 col-md-2 col-lg-1 col-xl-2 text-black">
       <NavigationSidebar/>
     </div>
-    <div className="col-7">
+    <div className="col-sm-10 col-md-10 col-lg-7 col-xl-6 text-black">
       <Routes>
       <Route path="/home" element={<HomeScreen/>} />
   <Route path="/explore" element={<ExploreScreen/>} />
@@ -26,7 +36,7 @@ function Tuiter() {
   <Route path="/profile" element={<ProfileScreen />} />
       </Routes>
     </div>
-    <div className="col-3">
+    <div className="d-none d-lg-inline col-lg-4 col-xl-4 text-black">
       <WhoToFollowList/>
     </div>
   
@@ -34,6 +44,7 @@ function Tuiter() {
     
   </div>
 </div>
+</Provider>
 
  )
 }
