@@ -1,7 +1,7 @@
 import React from "react";
 import TuitStats from "./TuitStats";
 import {useDispatch} from "react-redux";
-import { deleteTuit } from "../reducers/tuits-reducer";
+import {deleteTuitThunk} from "../services/tuits-thunks";
 
 import {
     FaCheckCircle,
@@ -25,7 +25,8 @@ const TuitItem = ({tuit}
 
   const dispatch = useDispatch();
 const deleteTuitHandler = (id) => {
-  dispatch(deleteTuit(id));
+  dispatch(deleteTuitThunk(id));
+
 }
 
     
@@ -50,7 +51,7 @@ const deleteTuitHandler = (id) => {
         <div className="col-auto"> {tuit.time}</div>
         </div>
         <div>{tuit.tuit}</div>
-        <TuitStats replies={tuit.replies} retuits={tuit.retuits} likes={tuit.likes} isLiked={tuit.liked} />
+        <TuitStats tuit = {tuit} />
        
      </div>
      

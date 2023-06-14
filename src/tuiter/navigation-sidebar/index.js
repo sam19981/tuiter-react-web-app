@@ -1,22 +1,6 @@
-// import React from "react";
-// import { Link, useLocation } from "react-router-dom";
-// const NavigationSidebar = () => {
-//  const { pathname } = useLocation();
-//  const [ignore, tuiter, active] = pathname.split("/");
-
-//  return (
-//    <div className="list-group">
-//      {links.map((link) => 
-//          <Link to={`/tuiter/${link}`} className={`list-group-item text-capitalize ${active === link ? "active" : ""}`}>
-//            {link}
-//          </Link>
-//      )}
-//    </div>
-//  );
-// };
-// export default NavigationSidebar;
 
 import React from "react";
+import { useSelector } from "react-redux";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -41,6 +25,8 @@ import {
   faEllipsis,
 
   faUser,
+  faSignInAlt,
+  faUserPlus
 
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -50,6 +36,7 @@ import {
 
 
 const NavigationSidebar = () => {
+  const { currentUser } = useSelector((state) => state.user);
 
   const { pathname } = useLocation();
 
@@ -68,8 +55,6 @@ const NavigationSidebar = () => {
     { name: "bookmarks", icon: faBookmark },
 
     { name: "lists", icon: faList },
-
-    { name: "profile", icon: faUser },
 
     { name: "more", icon: faEllipsis },
 
@@ -103,6 +88,24 @@ const NavigationSidebar = () => {
 
         ))}
 
+    {!currentUser && <Link className= {`list-group-item text-capitalize ${active === "login" ? "active" : ""}`} to="/tuiter/login"> 
+    <FontAwesomeIcon icon={faSignInAlt} style={{ marginRight: '6px' }}  /> 
+      Login  
+       </Link>}
+
+     {!currentUser && <Link className= {`list-group-item text-capitalize ${active === "register" ? "active" : ""}`} to="/tuiter/register">
+      <FontAwesomeIcon icon={faUserPlus}  style={{ marginRight: '6px' }} /> 
+      Register
+      </Link>}
+
+     { currentUser && <Link className= {`list-group-item text-capitalize ${active === "profile" ? "active" : ""}`} to="/tuiter/profile">
+      <FontAwesomeIcon icon={faUser} style={{ marginRight: '6px' }} />
+       Profile 
+       </Link>}
+
+
+
+
       </div>
 
 
@@ -131,6 +134,19 @@ const NavigationSidebar = () => {
           </Link>
 
         ))}
+
+{!currentUser && <Link className= {`list-group-item text-capitalize ${active === "login" ? "active" : ""}`} to="/tuiter/login"> 
+    <FontAwesomeIcon icon={faSignInAlt} /> 
+       </Link>}
+
+     {!currentUser && <Link className= {`list-group-item text-capitalize ${active === "register" ? "active" : ""}`} to="/tuiter/register">
+      <FontAwesomeIcon icon={faUserPlus} />
+      </Link>}
+
+     { currentUser && <Link className= {`list-group-item text-capitalize ${active === "profile" ? "active" : ""}`} to="/tuiter/profile">
+      <FontAwesomeIcon icon={faUser} />
+       </Link>}
+
 
       </div>
 

@@ -1,40 +1,56 @@
 
 import React, { useState } from 'react';
-import { FaComment, FaRetweet, FaHeart, FaShare } from 'react-icons/fa';
+import { FaComment, FaRetweet, FaHeart, FaShare, FaThumbsDown } from 'react-icons/fa';
 import { FiUpload } from 'react-icons/fi';
+import { updateTuitThunk } from "../services/tuits-thunks";
+import { useDispatch } from "react-redux";
 
-const TuitStats = ({ replies, retuits, likes, isLiked }) => {
-  const [likeCount, setLikeCount] = useState(likes);
-  const [liked, setLiked] = useState(isLiked);
+const TuitStats = ( {tuit} ) => {
 
-  const handleLike = () => {
-    if (liked) {
-      setLikeCount(likeCount - 1);
-      setLiked(false);
-    } else {
-      setLikeCount(likeCount + 1);
-      setLiked(true);
-    }
-  };
+
+  const dispatch = useDispatch();
+
+  
 
   return (
     <div className="row">
       <div className="col">
         <FaComment className="me-2" />
-        {replies}
+        {tuit.replies}
       </div>
       <div className="col">
         <FaRetweet className="me-2" />
-        {retuits}
+        {tuit.retuits}
       </div>
       <div className="col">
         <FaHeart
           className="me-2"
-          color={liked ? 'red' : 'inherit'}
-          onClick={handleLike}
+          color= 'red'
+          onClick={() =>
+            dispatch(updateTuitThunk({ ...tuit, likes: tuit.likes + 1 }))
+        }
         />
-        {likeCount}
+
+
+        {tuit.likes}
       </div>
+      <div className="col">
+      <FaThumbsDown
+  className="me-2"
+  color="blue"
+  onClick={() =>
+    dispatch(updateTuitThunk({ ...tuit, dislikes: tuit.dislikes + 1 }))
+  }
+/>
+
+{tuit.dislikes}
+
+      </div>
+
+      
+
+
+
       <div className="col">
         <FiUpload className="me-2" />
       </div>

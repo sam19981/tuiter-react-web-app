@@ -5,11 +5,12 @@ import { MdFormatListBulleted } from 'react-icons/md';
 import { BsEmojiSmile } from 'react-icons/bs';
 import { TbCalendarStats } from 'react-icons/tb';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
+
 import { BiBold, BiItalic } from 'react-icons/bi';
 import { IoGifOutline } from 'react-icons/io5';
 
-import {createTuit} from "./reducers/tuits-reducer";
 import {useDispatch} from "react-redux";
+import {createTuitThunk} from "./services/tuits-thunks";
 
 
 
@@ -21,7 +22,8 @@ const WhatsHappening = () => {
    const newTuit = {
     tuit: whatsHappening
   }
-  dispatch(createTuit(newTuit));
+  dispatch(createTuitThunk(newTuit));
+
   setWhatsHappening("");
 
  }
@@ -42,7 +44,6 @@ const WhatsHappening = () => {
          </button>
          <div className="text-primary fs-2">
            <AiOutlinePicture className="me-3" />
-           
            <MdFormatListBulleted className="me-3" />
            <BsEmojiSmile className="me-3" />
            <TbCalendarStats className="me-3"/>
