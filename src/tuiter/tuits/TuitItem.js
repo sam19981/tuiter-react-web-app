@@ -44,7 +44,7 @@ const deleteTuitHandler = (id) => {
             onClick={() => deleteTuitHandler(tuit._id)}></button>
 
         <div className="row g-1">
-        <div className="col-auto fw-bolder">{tuit.userName}</div>
+        <div className="col-auto fw-bolder">{tuit.username}</div>
         <div className="col-auto"><FaCheckCircle color="#1DA1F2"/></div>
         <div className="col-auto">{tuit.handle} </div>
         <div className="col-auto">·</div>

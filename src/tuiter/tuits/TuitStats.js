@@ -16,11 +16,11 @@ const TuitStats = ( {tuit} ) => {
     <div className="row">
       <div className="col">
         <FaComment className="me-2" />
-        {tuit.replies}
+        {tuit.comments}
       </div>
       <div className="col">
         <FaRetweet className="me-2" />
-        {tuit.retuits}
+        {tuit.retweets}
       </div>
       <div className="col">
         <FaHeart
